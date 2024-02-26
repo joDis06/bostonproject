@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glory to Breckeunridge</title>
+<link rel="stylesheet" href="bostoncss.css">
+
+</head>
+
+<body>
+    <h1> Going to Boston </h1>
+    <h5> By Phoebe Young & Joseph Disomma </h5>
+
+    <div id="app">
+        <div id="startMenu">
+            <input type="number" id="my_value" v-model="roundsMax"/> <br>
+            <button v-on:click="isOdd()">Start Game</button>
+        </div>
+
+        <div id="gameplay" class="hidden">
+            Rounds: {{currentRound}} / {{roundsMax}}
+                <br>
+                <br>
+            Player 1 Wins: {{player1.wins}} <br>
+            Player 2 Wins: {{player2.wins}}
+
+                <br>
+                <br>
+
+            Player 1:
+                <br>
+            &nbspCurrent Score: {{player1.score}}
+                <br>
+            &nbspRolled dice: 
+            //&nbsp
+            <span v-for="miniDieList in player1.diceList">
+                <span v-for="die in miniDieList">
+                    {{die}} &nbsp
+                </span>
+                // &nbsp
+            </span> 
+                <br>
+            <button :disabled='player1.allowRoll' v-on:click="rollDice(player1)">Roll Dice</button>
+
+                <br>
+                <br>
+
+            Player 2:
+                <br>
+            &nbspCurrent Score: {{player2.score}}
+                <br>
+            &nbspRolled dice: 
+            //&nbsp
+            <span v-for="miniDieList in player2.diceList">
+                <span v-for="die in miniDieList">
+                    {{die}} &nbsp
+                </span>
+                // &nbsp
+            </span>
+                <br>
+            <button :disabled='player2.allowRoll' v-on:click="rollDice(player2)">Roll Dice</button>
+
+                <br>
+                <br>
+
+                {{wonText}}
+
+                <br>
+                <br>
+
+            <button :disabled='allowNext' v-on:click="nextRound()">Next Round</button>
+            
+            <!-- USE A NESTED FOR LOOP first loop is for the array's arrays -->
+            <!-- second loop is for each individual die. like X, X, X // X, X // X -->
+
+
+            <!-- Need to implement way to finish game & reset. -->
+        </div>
+
+    </div>
+
+    <script type="module" src="our_app.js"></script>
+
+</body>
+
+</html>
